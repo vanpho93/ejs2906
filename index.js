@@ -15,6 +15,8 @@ app.get('/list', (req, res) => res.render('list', { mang: arrSubjects }));
 
 app.get('/emps', (req, res) => res.render('emps', { mang: arrEmp }));
 
+app.get('/add', (req, res) => res.render('add'));
+
 app.listen(3000, () => console.log('Server started!'));
 
 //ejs
