@@ -7,6 +7,17 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(express.static('./public'));
 
+//localhost:3000/a.png
+
+app.get('/add', (req, res) => res.render('add'));
+
+app.post('/xuly', parser, (req, res) => {
+    const { txtName, txtAge } = req.body;
+    const employee = new Employee(txtName, txtAge);
+    arrEmp.push(employee);
+    res.send('Da nhan request ' + txtName + ' ' + txtAge);
+});
+
 app.get('/', (req, res) => res.render('home', { name: 'Pho' }));
 
 app.get('/admin', (req, res) => res.render('admin', { isAdmin: false }));
@@ -17,12 +28,7 @@ app.get('/list', (req, res) => res.render('list', { mang: arrSubjects }));
 
 app.get('/emps', (req, res) => res.render('emps', { mang: arrEmp }));
 
-app.get('/add', (req, res) => res.render('add'));
 
-app.post('/xuly', parser, (req, res) => {
-    const { txtName, txtAge } = req.body;
-    res.send('Da nhan request ' + txtName + ' ' + txtAge);
-});
 
 app.listen(3000, () => console.log('Server started!'));
 
