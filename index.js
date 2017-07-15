@@ -1,5 +1,7 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
+const parser = bodyParser.urlencoded({ extended: false });
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', './views');
@@ -16,6 +18,11 @@ app.get('/list', (req, res) => res.render('list', { mang: arrSubjects }));
 app.get('/emps', (req, res) => res.render('emps', { mang: arrEmp }));
 
 app.get('/add', (req, res) => res.render('add'));
+
+app.post('/xuly', parser, (req, res) => {
+    const { txtName, txtAge } = req.body;
+    res.send('Da nhan request ' + txtName + ' ' + txtAge);
+});
 
 app.listen(3000, () => console.log('Server started!'));
 
